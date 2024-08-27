@@ -68,22 +68,22 @@ font-weight:bolder;
     answer:"burger"
     }
 function teachers(){
-document.getElementById('teacherPage').style.display = "block";
-document.getElementById('intro').style.display = "none";
+    document.getElementById('teacherPage').style.display = "block";
+    document.getElementById('intro').style.display = "none";
 };
 function teacherReturn(){
-document.getElementById('teacherPage').style.display = "none";
-document.getElementById('intro').style.display = "block";
+    document.getElementById('teacherPage').style.display = "none";
+    document.getElementById('intro').style.display = "block";
 };
 let randomNum = null;
 function pickQuestion(){
-if(qArray.length == 0){
-// I gotta do some html stuff here but not rn
-return;
+    if(qArray.length == 0){
+    // I gotta do some html stuff here but not rn
+    return;
 }
-randomNum = Math.floor(Math.random() * qArray.length);
-//html stuff I gotta do the html first
-qArray.splice(randomNum, 1);
+    randomNum = Math.floor(Math.random() * qArray.length);
+    //html stuff I gotta do the html first  
+    qArray.splice(randomNum, 1);
 }
 
 </script>
