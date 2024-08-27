@@ -34,6 +34,10 @@
 	<p>Then they must click on the file in their files to open it.</p>
 </div>
 	<div id="questions">
+        <h1 id="questionDisp">No question?</h1>
+        <button onclick="doesntWorkYet">Answer</button>
+
+
 
 </div>
 	<div id="correct">
@@ -82,10 +86,14 @@ function pickQuestion(){
     return;
 }
     randomNum = Math.floor(Math.random() * qArray.length);
-    //html stuff I gotta do the html first  
+    document.getElementById('questionDisp').innerHTML = qArray[randomNum].question;
     qArray.splice(randomNum, 1);
 }
-
+function start(){
+    document.getElementById('intro').style.display = "none";
+    document.getElementById('questions').style.display = "block";
+    pickQuestion();
+}
 </script>
 </body>
 </html>
