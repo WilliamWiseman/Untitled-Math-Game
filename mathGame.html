@@ -8,7 +8,7 @@
 	<br>
     <h1>UNTITLED MATH GAME</h1>
     <br><br><br>
-    <button onclick="teachers">TEACHERS CLICK HERE</button>
+    <button onclick="teachers()">TEACHERS CLICK HERE</button>
     <br><br><br><br>
     <button onclick="start()">BEGIN GAME</button>
     <br><br>
@@ -18,28 +18,28 @@
 <button onclick="rtrnRulePage()">Return to Main</button>
 </div>
 <div id="teacherPage" style="display:none">
-<button></button>
+<button onclick="teacherReturn()">Return</button>
 <h1>WELCOME EDUCATORS</h1>
-<p>You may be confused as to what the heck this all is. That's what this page is for!</p>
-<p>First, this game is HIGHLY customizable. All you need to do is give William Wiseman a slip of paper.</p>
-<p>On this slip of paper you have to put 3 things.</p>
-<p>First, I will need your email. This way I can send it to you.</p>
-<p>Second, I need questions and answers. Sadly I cannot include images due to data issues.</p>
-<p>Third, I would love any customizations you want. I can change anything.</p>
-<p>Sorry if you don't like that the score is aneurysms. I will change it.</p>
+	<p>You may be confused as to what the heck this all is. That's what this page is for!</p>
+	<p>First, this game is HIGHLY customizable. All you need to do is give William Wiseman a slip of paper.</p>
+	<p>On this slip of paper you have to put 3 things.</p>
+	<p>First, I will need your email. This way I can send it to you.</p>
+	<p>Second, I need questions and answers. Sadly I cannot include images due to data issues.</p>
+	<p>Third, I would love any customizations you want. I can change anything.</p>
+	<p>Sorry if you don't like that the score is aneurysms. I will change it.</p>
 <h1>INSTRUCTIONS</h1>
-<p>First, get your own special copy of the game.</p>
-<p>Next, you need to share the file, which is in your drive, to all of your students.</p>
-<p>In order to play the game, your students must download the copy from their drive</p>
-<p>Then they must click on the file in their files to open it.</p>
+	<p>First, get your own special copy of the game.</p>
+	<p>Next, you need to share the file, which is in your drive, to all of your students.</p>
+	<p>In order to play the game, your students must download the copy from their drive</p>
+	<p>Then they must click on the file in their files to open it.</p>
 </div>
-<div id="questions">
+	<div id="questions">
 
 </div>
-<div id="correct">
+	<div id="correct">
 
 </div>
-<div id="incorrect">
+	<div id="incorrect">
 
 </div>
 <style>
@@ -49,16 +49,19 @@ font-weight:bolder;
 }
 </style>
 <script>
-let streak = 0;
-let aneurysms = 0;
-let qAnswered = 0;
-let qCorrect = 0;
-let qWrong = 0;
-function something(){
-
-
+	let streak = 0;
+	let aneurysms = 0;
+	let qAnswered = 0;
+	let qCorrect = 0;
+	let qWrong = 0;
+function teachers(){
+document.getElementById('teacherPage').style.display = "block";
+document.getElementById('intro').style.display = "none";
 }
-
+function teacherReturn(){
+document.getElementById('teacherPage').style.display = "none";
+document.getElementById('intro').style.display = "block";
+}
 
 </script>
 </body>
