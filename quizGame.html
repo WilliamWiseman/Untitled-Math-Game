@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>untitled math game</title>
+<title>untitled quiz game</title>
 </head>
 <body>
 <div id="intro">
 	<br>
-    <h1>UNTITLED MATH GAME</h1>
+    <h1>UNTITLED QUIZ GAME</h1>
     <br><br><br>
     <button onclick="teachers()">TEACHERS CLICK HERE</button>
     <br><br><br><br>
@@ -16,6 +16,8 @@
 </div>
 <div id="rules" style="display:none">
 <button onclick="rtrnRulePage()">Return to Main</button>
+<p>Just play the game. It will run until there are no questions left.</p>
+<p>When you complete all the questions, your score will be at the top.</p>
 </div>
 <div id="teacherPage" style="display:none">
 <button onclick="teacherReturn()">Return</button>
@@ -41,10 +43,10 @@
 
 </div>
 	<div id="correct" style="display:none">
-
+<h1>Correct</h1>
 </div>
 	<div id="incorrect" style="display:none">
-
+<h1>not right</h1>
 </div>
 <style>
 body{
@@ -85,7 +87,7 @@ font-weight:bolder;
     }
 
 	let streak = 0;
-	let aneurysms = 0;
+	let score = 0;
 	let qAnswered = 0;
 	let qCorrect = 0;
 	let qWrong = 0;
@@ -94,7 +96,29 @@ font-weight:bolder;
     let qArray = [ ];
     qArray.push(questionFactory("Sample. The answer is cheese.", "cheese"));
     qArray.push(questionFactory("Sample. The answer is beans.", "beans"));
-    qArray.push(questionFactory("Sample. The answer is burger.", "burger")); 
+    qArray.push(questionFactory("Sample. The answer is burger.", "burger"));
+    qArray.push(questionFactory("Sample. The answer is jarrett.", "jarrett"));
+
+let CorrectAnswer = null;
+let GivenAnswer = null;
+function CorrectFunction(){
+    document.getElementById('correct').style.display = "block";
+    document.getElementById('questions').style.display = "none";
+}
+function WrongFunction(){
+    document.getElementById('incorrect').style.display = "block";
+    document.getElementById('questions').style.display = "none";
+}
+function answered(){
+    CorrectAnswer = qArray[randomNum].answer;
+    givenAnswer = prompt('Answer here. All lowercase, no spaces.');
+if(givenAnswer == CorrectAnswer){
+    CorrectFunction()
+}
+else{
+    WrongFunction()
+}
+}
 </script>
 </body>
 </html>
