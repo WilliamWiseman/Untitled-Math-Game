@@ -53,47 +53,48 @@ font-weight:bolder;
 }
 </style>
 <script>
+    function teachers(){
+        document.getElementById('teacherPage').style.display = "block";
+        document.getElementById('intro').style.display = "none";
+    };
+    function teacherReturn(){
+        document.getElementById('teacherPage').style.display = "none";
+        document.getElementById('intro').style.display = "block";
+    };
+    let randomNum = null;
+    function pickQuestion(){
+        if(qArray.length == 0){
+        // I gotta do some html stuff here but not rn
+        return;
+    }
+        randomNum = Math.floor(Math.random() * qArray.length);
+        document.getElementById('questionDisp').innerHTML = qArray[randomNum].question;
+        qArray.splice(randomNum, 1);
+    }
+    function start(){
+        document.getElementById('intro').style.display = "none";
+        document.getElementById('questions').style.display = "block";
+        pickQuestion();
+    }
+
+    function questionFactory(question, answer) {
+        this.objQuestion = {};
+        this.objQuestion.question = question;
+        this.objQuestion.answer = answer;
+        return this.objQuestion;
+    }
+
 	let streak = 0;
 	let aneurysms = 0;
 	let qAnswered = 0;
 	let qCorrect = 0;
 	let qWrong = 0;
-    let q1 = {
-    question:"Sample. The answer is cheese.",
-    answer:"cheese"
-    }
-    let q2 = {
-    question:"Sample. The answer is beans.",
-    answer:"beans"
-    }
-    let q3 = {
-    question:"Sample. The answer is burger.",
-    answer:"burger"
-    }
-    let qArray = [q1, q2, q3]
-function teachers(){
-    document.getElementById('teacherPage').style.display = "block";
-    document.getElementById('intro').style.display = "none";
-};
-function teacherReturn(){
-    document.getElementById('teacherPage').style.display = "none";
-    document.getElementById('intro').style.display = "block";
-};
-let randomNum = null;
-function pickQuestion(){
-    if(qArray.length == 0){
-    // I gotta do some html stuff here but not rn
-    return;
-}
-    randomNum = Math.floor(Math.random() * qArray.length);
-    document.getElementById('questionDisp').innerHTML = qArray[randomNum].question;
-    qArray.splice(randomNum, 1);
-}
-function start(){
-    document.getElementById('intro').style.display = "none";
-    document.getElementById('questions').style.display = "block";
-    pickQuestion();
-}
+
+
+    let qArray = [ ];
+    qArray.push(questionFactory("Sample. The answer is cheese.", "cheese"));
+    qArray.push(questionFactory("Sample. The answer is beans.", "beans"));
+    qArray.push(questionFactory("Sample. The answer is burger.", "burger")); 
 </script>
 </body>
 </html>
