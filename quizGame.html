@@ -19,28 +19,9 @@
 <p>Just play the game. It will run until there are no questions left.</p>
 <p>When you complete all the questions, your score will be at the top.</p>
 </div>
-<div id="teacherPage" style="display:none">
-<button onclick="teacherReturn()">Return</button>
-<h1>WELCOME EDUCATORS</h1>
-	<p>You may be confused as to what the heck this all is. That's what this page is for!</p>
-	<p>First, this game is HIGHLY customizable. All you need to do is give William Wiseman a slip of paper.</p>
-	<p>On this slip of paper you have to put 3 things.</p>
-	<p>First, I will need your email. This way I can send it to you.</p>
-	<p>Second, I need questions and answers. Sadly I cannot include images due to data issues.</p>
-	<p>Third, I would love any customizations you want. I can change anything.</p>
-	<p>Sorry if you don't like that the score is aneurysms. I will change it.</p>
-<h1>INSTRUCTIONS</h1>
-	<p>First, get your own special copy of the game.</p>
-	<p>Next, you need to share the file, which is in your drive, to all of your students.</p>
-	<p>In order to play the game, your students must download the copy from their drive</p>
-	<p>Then they must click on the file in their files to open it.</p>
-</div>
-	<div id="questions" style="display:none">
-        <h1 id="questionDisp">No question?</h1>
+<div id="questions">    
+	<h1 id="questionDisp">No question?</h1>
         <button onclick="doesntWorkYet">Answer</button>
-
-
-
 </div>
 	<div id="correct" style="display:none">
 <h1>Correct</h1>
@@ -64,26 +45,21 @@ font-weight:bolder;
         document.getElementById('intro').style.display = "block";
     };
     let randomNum = null;
-    function pickQuestion(){
-        if(qArray.length == 0){
-        // I gotta do some html stuff here but not rn
-        return;
+    function pickQuestion(){ //THIS IS THE MAIN FUNCTION
+        i = Math.floor(Math.random() * array.length);
+        CorrectAnswer = qArray[i].answer;
+        document.getElementById('questionDisp').innerHTML = qArray[i].question;
+    if(i === 0){
+    array.shift();
+    return;
     }
-        randomNum = Math.floor(Math.random() * qArray.length);
-        document.getElementById('questionDisp').innerHTML = qArray[randomNum].question;
-        qArray.splice(randomNum, 1);
+    array[i] = array[0];
+    array.shift();
     }
     function start(){
         document.getElementById('intro').style.display = "none";
         document.getElementById('questions').style.display = "block";
         pickQuestion();
-    }
-
-    function questionFactory(question, answer) {
-        this.objQuestion = {};
-        this.objQuestion.question = question;
-        this.objQuestion.answer = answer;
-        return this.objQuestion;
     }
 
 	let streak = 0;
@@ -92,6 +68,12 @@ font-weight:bolder;
 	let qCorrect = 0;
 	let qWrong = 0;
 
+    function questionFactory(question, answer) {
+        this.objQuestion = {};
+        this.objQuestion.question = question;
+        this.objQuestion.answer = answer;
+        return this.objQuestion;
+    }
 
     let qArray = [ ];
     qArray.push(questionFactory("Sample. The answer is cheese.", "cheese"));
@@ -110,9 +92,8 @@ function WrongFunction(){
     document.getElementById('questions').style.display = "none";
 }
 function answered(){
-    CorrectAnswer = qArray[randomNum].answer;
     givenAnswer = prompt('Answer here. All lowercase, no spaces.');
-if(givenAnswer == CorrectAnswer){
+if(givenAnswer === CorrectAnswer){
     CorrectFunction();
 }
 else{
