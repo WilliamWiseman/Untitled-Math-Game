@@ -9,12 +9,16 @@ body{
 text-align:center;
 }
 fieldset{
-text-align:left;
+text-align:center;
+margin:auto;
+}
+legend{
+text-align:left
 }
 </style>
 <h1 id="qdisp">Question</h1><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br>
-<fieldset><legend>ANSWERS</legend>
+<fieldset style="width:605px"><legend>ANSWERS</legend>
 <button
 style="width:300px;height:70px" id="q1" onclick="answer(1)"
 >1</button>
@@ -31,19 +35,38 @@ style="width:300px;height:70px" id="q4" onclick="answer(4)"
 
 <script>
 let questions = [];
-function qfactory(qinput, Ainput){
-this.qobject = {};
-this.qobject.qstn = qinput;
-this.qobject.answr = Ainput;
+function qfactory(qinput, Ainput, op1, op2, op3, op4){
+this.objQuestion = {};
+this.objQuestion.question = qinput;
+this.objQuestion.answer = Ainput;
+this.objQuestion.op1 = op1;
+this.objQuestion.op2 = op2;
+this.objQuestion.op3 = op3;
+this.objQuestion.op4 = op4;
+return this.objQuestion;
 }
-questions.push("SAMPLE 1. Answer is 3", 3);
-questions.push("SAMPLE 2. Answer is 1", 1);
+questions.push(qfactory("SAMPLE 1. Answer is kay", 3,
+"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 2. Answer is yay", 1,
+"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 3. Answer is slay", 4,
+"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 4. Answer is nay", 2,
+"yay", "nay", "kay", "slay"));
 let ANSWER = null;
 function answer(num){
-alert('you answered: ' + num);
+alert('You answered: ' + num);
 ANSWER = num;
 }
-document.getElementById('qdisp').innerHTML = questions[1].qstn;
+let i = Math.floor(Math.random() * questions.length);
+function updatePage(){
+document.getElementById('qdisp').innerHTML = questions[i].question;
+document.getElementById('q1').innerHTML = questions[i].op1;
+document.getElementById('q2').innerHTML = questions[i].op2;
+document.getElementById('q3').innerHTML = questions[i].op3;
+document.getElementById('q4').innerHTML = questions[i].op4;
+}
+updatePage();
 </script>
 </body>
 </html>
