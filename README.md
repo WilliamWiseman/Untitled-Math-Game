@@ -4,3 +4,4 @@ Email me a list of questions, the answer,  your email for easier sending, and yo
 
 ADDITIONAL INFORMATION:
 The answers are not case sensitive, and the questions are cycled through randomly. Number answers are fine, explain to your students how to answer.
+NO SPECIAL CHARACTERS
