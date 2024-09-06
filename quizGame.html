@@ -16,6 +16,14 @@ legend{
 text-align:left
 }
 </style>
+<div id="intro">
+<h1>UNTITLED QUIZ GAME</h1>
+<p><b>DEMO EDITION</b></p>
+<button onclick="start()">PLAY</button>
+</div>
+
+
+<div id="questions" style="display:none">
 <h1 id="qdisp">Question</h1><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br>
 <fieldset style="width:605px"><legend>ANSWERS</legend>
@@ -32,8 +40,24 @@ style="width:300px;height:70px" id="q3" onclick="answer(3)"
 style="width:300px;height:70px" id="q4" onclick="answer(4)"
 >4</button>
 </fieldset>
+</div>
+
+<div id="right" style="display:none">
+<h1>This is the correct screen WAHOOOOOOO</h1>
+</div>
+
+<div id="rong" style="display:none">
+    <h1>This is the wrong screen aw</h1>
+    </div>
 
 <script>
+let TotalQuestions = 4;
+let TotalRight = 0;
+let TotalWrong = 0;
+let streak = 0;
+let POINTS = 0;
+let pointsAdded = 0;
+
 let questions = [];
 function qfactory(qinput, Ainput, op1, op2, op3, op4){
 this.objQuestion = {};
@@ -55,10 +79,16 @@ questions.push(qfactory("SAMPLE 4. Answer is nay", 2,
 "yay", "nay", "kay", "slay"));
 let ANSWER = null;
 function answer(num){
-alert('You answered: ' + num);
 ANSWER = num;
+if(ANSWER == questions[i].answer){
+    document.getElementById('questions').style.display = "none";
+    document.getElementById('right').style.display = "block";
+return;
 }
-let i = Math.floor(Math.random() * questions.length);
+document.getElementById('rong').style.display = "block";
+document.getElementById('questions').style.display = "none";
+}
+let i;
 function updatePage(){
 document.getElementById('qdisp').innerHTML = questions[i].question;
 document.getElementById('q1').innerHTML = questions[i].op1;
@@ -66,7 +96,23 @@ document.getElementById('q2').innerHTML = questions[i].op2;
 document.getElementById('q3').innerHTML = questions[i].op3;
 document.getElementById('q4').innerHTML = questions[i].op4;
 }
+function pick(){
+i = Math.floor(Math.random() * questions.length);
 updatePage();
+}
+function remove(){
+if(i === 0){
+questions.shift();
+return;
+}
+questions[i] = questions[0];
+questions.shift();
+}
+pick();
+function start(){
+    document.getElementById('intro').style.display = "none";
+    document.getElementById('questions').style.display = "block";
+}
 </script>
 </body>
 </html>
