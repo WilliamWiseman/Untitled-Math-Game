@@ -44,6 +44,8 @@ style="width:300px;height:70px" id="q4" onclick="answer(4)"
 
 <div id="right" style="display:none">
 <h1>This is the correct screen WAHOOOOOOO</h1>
+<p>Points!: <span id="pointdisp">The disp no work</span></p>
+<p>Streak: <span id="streakdisp">The disp no work</span></p>
 </div>
 
 <div id="rong" style="display:none">
@@ -83,6 +85,22 @@ ANSWER = num;
 if(ANSWER == questions[i].answer){
     document.getElementById('questions').style.display = "none";
     document.getElementById('right').style.display = "block";
+    pointsAdded = streak;
+    pointsAdded++;
+    POINTS += pointsAdded;
+    streak++;
+    TotalRight++;
+    document.getElementById('pointdisp').innerHTML = POINTS;
+    document.getElementById('streakdisp').innerHTML = streak;
+        // DOING THE HTML STUFF
+    remove();
+    if(questions.length == 0){
+    //more html crap for the end screen
+    alert('You finished all the questions');
+    return;
+    }
+    pick();
+
 return;
 }
 document.getElementById('rong').style.display = "block";
