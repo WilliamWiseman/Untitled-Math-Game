@@ -71,14 +71,27 @@ this.objQuestion.op3 = op3;
 this.objQuestion.op4 = op4;
 return this.objQuestion;
 }
+function optionFactory(one, two, three, four){
+this.arr = [];
+this.arr.push(one);
+this.arr.push(two);
+this.arr.push(three);
+this.arr.push(four);
+return this.arr;
+}
+let OPTIONS = [];
 questions.push(qfactory("SAMPLE 1. Answer is kay", 3,
 "yay", "nay", "kay", "slay"));
+OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 questions.push(qfactory("SAMPLE 2. Answer is yay", 1,
 "yay", "nay", "kay", "slay"));
+OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 questions.push(qfactory("SAMPLE 3. Answer is slay", 4,
 "yay", "nay", "kay", "slay"));
+OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 questions.push(qfactory("SAMPLE 4. Answer is nay", 2,
 "yay", "nay", "kay", "slay"));
+OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 let ANSWER = null;
 function answer(num){
 ANSWER = num;
@@ -109,10 +122,10 @@ document.getElementById('questions').style.display = "none";
 let i;
 function updatePage(){
 document.getElementById('qdisp').innerHTML = questions[i].question;
-document.getElementById('q1').innerHTML = questions[i].op1;
-document.getElementById('q2').innerHTML = questions[i].op2;
-document.getElementById('q3').innerHTML = questions[i].op3;
-document.getElementById('q4').innerHTML = questions[i].op4;
+document.getElementById('q1').innerHTML = OPTIONS[i][1];
+document.getElementById('q2').innerHTML = OPTIONS[i][2];
+document.getElementById('q3').innerHTML = OPTIONS[i][3];
+document.getElementById('q4').innerHTML = OPTIONS[i][4];
 }
 function pick(){
 i = Math.floor(Math.random() * questions.length);
