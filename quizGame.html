@@ -28,16 +28,16 @@ text-align:left
 <br><br><br><br><br><br><br><br>
 <fieldset style="width:605px"><legend>ANSWERS</legend>
 <button
-style="width:300px;height:70px" id="q1" onclick="answer(1)"
+style="width:300px;height:70px" id="q1" onclick="answer(0)"
 >1</button>
 <button
-style="width:300px;height:70px" id="q2" onclick="answer(2)"
+style="width:300px;height:70px" id="q2" onclick="answer(1)"
 >2</button>
 <button
-style="width:300px;height:70px" id="q3" onclick="answer(3)"
+style="width:300px;height:70px" id="q3" onclick="answer(2)"
 >3</button>
 <button
-style="width:300px;height:70px" id="q4" onclick="answer(4)"
+style="width:300px;height:70px" id="q4" onclick="answer(3)"
 >4</button>
 </fieldset>
 </div>
@@ -61,14 +61,10 @@ let POINTS = 0;
 let pointsAdded = 0;
 
 let questions = [];
-function qfactory(qinput, Ainput, op1, op2, op3, op4){
+function qfactory(qinput, Ainput){
 this.objQuestion = {};
 this.objQuestion.question = qinput;
 this.objQuestion.answer = Ainput;
-this.objQuestion.op1 = op1;
-this.objQuestion.op2 = op2;
-this.objQuestion.op3 = op3;
-this.objQuestion.op4 = op4;
 return this.objQuestion;
 }
 function optionFactory(one, two, three, four){
@@ -80,19 +76,31 @@ this.arr.push(four);
 return this.arr;
 }
 let OPTIONS = [];
-questions.push(qfactory("SAMPLE 1. Answer is kay", 3,
-"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 1. Answer is kay", 2));
 OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
-questions.push(qfactory("SAMPLE 2. Answer is yay", 1,
-"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 2. Answer is yay", 0));
 OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
-questions.push(qfactory("SAMPLE 3. Answer is slay", 4,
-"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 3. Answer is slay", 3));
 OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
-questions.push(qfactory("SAMPLE 4. Answer is nay", 2,
-"yay", "nay", "kay", "slay"));
+questions.push(qfactory("SAMPLE 4. Answer is nay", 1));
 OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 let ANSWER = null;
+function remove(){
+if(i === 0){
+questions.shift();
+return;
+}
+questions[i] = questions[0];
+questions.shift();
+}
+function remove2(){
+    if(z === 0){
+OPTIONS[i].shift();
+return;
+}
+OPTIONS[i][z] = OPTIONS[i][0];
+OPTIONS[i].shift();
+}
 function answer(num){
 ANSWER = num;
 if(ANSWER == questions[i].answer){
@@ -120,24 +128,25 @@ document.getElementById('rong').style.display = "block";
 document.getElementById('questions').style.display = "none";
 }
 let i;
+let z;
 function updatePage(){
 document.getElementById('qdisp').innerHTML = questions[i].question;
-document.getElementById('q1').innerHTML = OPTIONS[i][1];
-document.getElementById('q2').innerHTML = OPTIONS[i][2];
-document.getElementById('q3').innerHTML = OPTIONS[i][3];
-document.getElementById('q4').innerHTML = OPTIONS[i][4];
+z = Math.floor(Math.random() * OPTIONS[i].length);
+document.getElementById('q1').innerHTML = OPTIONS[i][z];
+remove2();
+z = Math.floor(Math.random() * OPTIONS[i].length);
+document.getElementById('q2').innerHTML = OPTIONS[i][z];
+remove2();
+z = Math.floor(Math.random() * OPTIONS[i].length);
+document.getElementById('q3').innerHTML = OPTIONS[i][z];
+remove2();
+z = Math.floor(Math.random() * OPTIONS[i].length);
+document.getElementById('q4').innerHTML = OPTIONS[i][z];
+remove2();
 }
 function pick(){
 i = Math.floor(Math.random() * questions.length);
 updatePage();
-}
-function remove(){
-if(i === 0){
-questions.shift();
-return;
-}
-questions[i] = questions[0];
-questions.shift();
 }
 pick();
 function start(){
