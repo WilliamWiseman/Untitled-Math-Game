@@ -28,16 +28,16 @@ text-align:left
 <br><br><br><br><br><br><br><br>
 <fieldset style="width:605px"><legend>ANSWERS</legend>
 <button
-style="width:300px;height:70px" id="q1" onclick="answer(GLORP1)"
+style="width:300px;height:70px" id="q1" onclick="answer(0)"
 >1</button>
 <button
-style="width:300px;height:70px" id="q2" onclick="answer(GLORP2)"
+style="width:300px;height:70px" id="q2" onclick="answer(1)"
 >2</button>
 <button
-style="width:300px;height:70px" id="q3" onclick="answer(GLORP3)"
+style="width:300px;height:70px" id="q3" onclick="answer(2)"
 >3</button>
 <button
-style="width:300px;height:70px" id="q4" onclick="answer(GLORP4)"
+style="width:300px;height:70px" id="q4" onclick="answer(3)"
 >4</button>
 </fieldset>
 </div>
@@ -102,29 +102,12 @@ OPTIONS[i][z] = OPTIONS[i][0];
 OPTIONS[i].shift();
 }
 let i;
-let z;
-let GLORP1 = 1;
-let GLORP2 = 2;
-let GLORP3 = 3;
-let GLORP4 = 4;
 function updatePage(){
 document.getElementById('qdisp').innerHTML = questions[i].question;
-z = Math.floor(Math.random() * OPTIONS[i].length);
-document.getElementById('q1').innerHTML = OPTIONS[i][z];
-document.getElementById('q4').onclick = "answer(z)";
-remove2();
-z = Math.floor(Math.random() * OPTIONS[i].length);
-document.getElementById('q2').innerHTML = OPTIONS[i][z];
-document.getElementById('q4').onclick = "answer(z)";
-remove2();
-z = Math.floor(Math.random() * OPTIONS[i].length);
-document.getElementById('q3').innerHTML = OPTIONS[i][z];
-document.getElementById('q4').onclick = "answer(z)";
-remove2();
-z = Math.floor(Math.random() * OPTIONS[i].length);
-document.getElementById('q4').innerHTML = OPTIONS[i][z];
-document.getElementById('q4').onclick = "answer(z)";
-remove2();
+document.getElementById('q1').innerHTML = OPTIONS[i][0];
+document.getElementById('q2').innerHTML = OPTIONS[i][1];
+document.getElementById('q3').innerHTML = OPTIONS[i][2];
+document.getElementById('q4').innerHTML = OPTIONS[i][3];
 }
 function pick(){
 i = Math.floor(Math.random() * questions.length);
