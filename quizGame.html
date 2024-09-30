@@ -19,9 +19,8 @@ text-align:left
 <div id="intro">
 <h1>UNTITLED QUIZ GAME</h1>
 <p><b>DEMO EDITION</b></p>
-<button onclick="start()">PLAY</button>
+<button onclick="pick()">PLAY</button>
 </div>
-
 
 <div id="questions" style="display:none">
 <h1 id="qdisp">Question</h1><br><br><br><br><br><br><br><br>
@@ -46,11 +45,22 @@ style="width:300px;height:70px" id="q4" onclick="answer(3)"
 <h1>This is the correct screen WAHOOOOOOO</h1>
 <p>Points!: <span id="pointdisp">The disp no work</span></p>
 <p>Streak: <span id="streakdisp">The disp no work</span></p>
+<button
+onclick="pick()">Next Question</button>
 </div>
 
 <div id="rong" style="display:none">
     <h1>This is the wrong screen aw</h1>
+    <p>Your streak has been reset to 0</p>
+    <p>points: <span id="pointdisp2">0</span></p>
+    <p>Question disp</p>
+    <p>The correct answer was: <span></span></p>
+    <button onclick="pick()">Next Question</button>
     </div>
+
+<div id="finish" style="display:none">
+<h1>You finished all the questions woohoo!</h1>
+</div>
 
 <script>
 let TotalQuestions = 4;
@@ -93,14 +103,6 @@ return;
 questions[i] = questions[0];
 questions.shift();
 }
-function remove2(){
-    if(z === 0){
-OPTIONS[i].shift();
-return;
-}
-OPTIONS[i][z] = OPTIONS[i][0];
-OPTIONS[i].shift();
-}
 let i;
 function updatePage(){
 document.getElementById('qdisp').innerHTML = questions[i].question;
@@ -111,15 +113,19 @@ document.getElementById('q4').innerHTML = OPTIONS[i][3];
 }
 function pick(){
 i = Math.floor(Math.random() * questions.length);
+document.getElementById('right').style.display = "none";
+document.getElementById('rong').style.display = "none";
+document.getElementById('intro').style.display = "none";
+document.getElementById('questions').style.display = "block";
 updatePage();
-}
-pick();
-function start(){
-    document.getElementById('intro').style.display = "none";
-    document.getElementById('questions').style.display = "block";
 }
 function answer(num){
 ANSWER = num;
+if(questions.length == 0){
+        document.getElementById('questions').style.display = "none";
+        document.getElementById('finish').style.display = "block";
+    return;
+}
 if(ANSWER == questions[i].answer){
     document.getElementById('questions').style.display = "none";
     document.getElementById('right').style.display = "block";
@@ -132,17 +138,16 @@ if(ANSWER == questions[i].answer){
     document.getElementById('streakdisp').innerHTML = streak;
         // DOING THE HTML STUFF
     remove();
-    if(questions.length == 0){
-    //more html crap for the end screen
-    alert('You finished all the questions');
-    return;
-    }
-    pick();
-
 return;
 }
 document.getElementById('rong').style.display = "block";
 document.getElementById('questions').style.display = "none";
+if(i > 0){
+POINTS--;
+}
+document.getElementById('pointdisp2').innerHTML = POINTS;
+streak = 0;
+remove();
 }
 </script>
 </body>
