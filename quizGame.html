@@ -59,17 +59,13 @@ onclick="pick()">Next Question</button>
     </div>
 
 <div id="finish" style="display:none">
-<h1>You finished all the questions woohoo!</h1>
+<h1>You finished all the questions!</h1>
+<p>Score: <span id="ttlRight">0</span>/<span id="ttlQ">0</span></p>
+<p>Percentage: <span id="PERCENT"></span>%</p>
+<p>You ended up with: <span id="ttlPoints"></span> points.</p>
 </div>
 
 <script>
-let TotalQuestions = 4;
-let TotalRight = 0;
-let TotalWrong = 0;
-let streak = 0;
-let POINTS = 0;
-let pointsAdded = 0;
-
 let questions = [];
 function qfactory(qinput, Ainput){
 this.objQuestion = {};
@@ -95,6 +91,14 @@ OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 questions.push(qfactory("SAMPLE 4. Answer is nay", 1));
 OPTIONS.push(optionFactory("yay", "nay", "kay", "slay"));
 let ANSWER = null;
+
+let TotalQuestions = questions.length;
+let TotalRight = 0;
+let TotalWrong = 0;
+let streak = 0;
+let POINTS = 0;
+let pointsAdded = 0;
+
 function remove(){
 if(i === 0){
 questions.shift();
@@ -117,6 +121,18 @@ document.getElementById('right').style.display = "none";
 document.getElementById('rong').style.display = "none";
 document.getElementById('intro').style.display = "none";
 document.getElementById('questions').style.display = "block";
+if(questions.length == 0){
+        document.getElementById('questions').style.display = "none";
+        document.getElementById('finish').style.display = "block";
+        document.getElementById('ttlRight').innerText = TotalRight;
+        document.getElementById('ttlQ').innerText = TotalQuestions;
+        document.getElementById('ttlPoints').innerText = POINTS;
+        let step = TotalRight / TotalQuestions;
+        step = step * 100;
+        let percent = Math.floor(step);
+        document.getElementById('PERCENT').innerText = percent;
+    return;
+}
 updatePage();
 }
 function answer(num){
@@ -136,15 +152,15 @@ if(ANSWER == questions[i].answer){
     TotalRight++;
     document.getElementById('pointdisp').innerHTML = POINTS;
     document.getElementById('streakdisp').innerHTML = streak;
-        // DOING THE HTML STUFF
     remove();
 return;
 }
 document.getElementById('rong').style.display = "block";
 document.getElementById('questions').style.display = "none";
-if(i > 0){
+if(POINTS > 0){
 POINTS--;
 }
+TotalWrong++;
 document.getElementById('pointdisp2').innerHTML = POINTS;
 streak = 0;
 remove();
